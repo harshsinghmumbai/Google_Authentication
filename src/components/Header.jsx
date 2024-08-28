@@ -33,7 +33,7 @@ import { Badge } from "./ui/badge";
 const Header = () => {
   return (
     <>
-      <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 border-gray-600 rounded-2xl">
+      <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 border-gray-600 rounded-2xl sticky top-0 backdrop-blur-sm">
         <div className="flex justify-between items-center ">
           <div className="sm:hidden">
             <Sheet>
@@ -160,7 +160,7 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Avatar>
                   <AvatarImage src="" alt="" />
-                  <AvatarFallback>H.S.</AvatarFallback>
+                  <AvatarFallback>H.S</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
