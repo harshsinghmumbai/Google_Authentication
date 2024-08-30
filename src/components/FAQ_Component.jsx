@@ -8,7 +8,7 @@ import {
 const FAQ_Component = () => {
   return (
     <>
-      <div className="p-3">
+      <div className="p-5 md:p-8 space-y-4">
         <h1 className="text-3xl font-bold dark:text-white">
           Frequently Asked Questions
         </h1>
@@ -40,7 +40,7 @@ const FAQ_Component = () => {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
-              <AccordionTrigger>full Responsiveness its?</AccordionTrigger>
+              <AccordionTrigger>Full Responsiveness its?</AccordionTrigger>
               <AccordionContent>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
                 vitae facilis quia?

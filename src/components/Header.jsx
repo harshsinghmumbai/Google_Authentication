@@ -33,7 +33,7 @@ import { Badge } from "./ui/badge";
 const Header = () => {
   return (
     <>
-      <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 border-gray-600 rounded-2xl sticky top-0 backdrop-blur-sm">
+      <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 z-10 border-gray-600 rounded-2xl sticky top-0 backdrop-blur-sm">
         <div className="flex justify-between items-center ">
           <div className="sm:hidden">
             <Sheet>
@@ -102,7 +102,7 @@ const Header = () => {
             </Sheet>
           </div>
           <Link href={"/"}>
-            <p className="flex items-center text-lg lg:text-xl font-semibold">
+            <p className="flex items-center text-lg lg:text-xl text-red-900 font-semibold">
               <Image
                 src="/logo.svg"
                 alt="logo"
@@ -120,7 +120,7 @@ const Header = () => {
                 <div className="flex space-x-6">
                   <MenubarMenu>
                     <MenubarTrigger>
-                      <li>Home</li>
+                      <li className="cursor-pointer">Home</li>
                     </MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem>Home Page Not Exist</MenubarItem>
@@ -128,7 +128,7 @@ const Header = () => {
                   </MenubarMenu>
                   <MenubarMenu>
                     <MenubarTrigger>
-                      <li>About</li>
+                      <li className="cursor-pointer">About</li>
                     </MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem>About Page Not Exist</MenubarItem>
@@ -136,7 +136,7 @@ const Header = () => {
                   </MenubarMenu>
                   <MenubarMenu>
                     <MenubarTrigger>
-                      <li>Contact</li>
+                      <li className="cursor-pointer">Contact</li>
                     </MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem>Contact Page Not Exist</MenubarItem>
@@ -144,7 +144,7 @@ const Header = () => {
                   </MenubarMenu>
                   <MenubarMenu>
                     <MenubarTrigger>
-                      <li>Blog</li>
+                      <li className="cursor-pointer">Blog</li>
                     </MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem>Blog Page Not Exist</MenubarItem>
@@ -158,10 +158,12 @@ const Header = () => {
             <ModeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Avatar>
-                  <AvatarImage src="" alt="" />
-                  <AvatarFallback>H.S</AvatarFallback>
-                </Avatar>
+                <div className="cursor-pointer">
+                  <Avatar>
+                    <AvatarImage src="/avatar.png" alt="image" />
+                    <AvatarFallback>H.S</AvatarFallback>
+                  </Avatar>
+                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
