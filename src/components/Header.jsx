@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -29,8 +30,10 @@ import {
 import { LuUser } from "react-icons/lu";
 import { HiOutlineMail } from "react-icons/hi";
 import { Badge } from "./ui/badge";
+import { useSession, signOut, signIn } from "next-auth/react";
 
 const Header = () => {
+  const { data, status } = useSession();
   return (
     <>
       <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 z-10 border-gray-600 rounded-2xl sticky top-0 backdrop-blur-sm">
@@ -44,7 +47,7 @@ const Header = () => {
                 <SheetHeader>
                   <SheetTitle>
                     <Link href={"/"}>
-                      <p className="flex items-center text-xl font-semibold justify-center py-6">
+                      <p className="flex items-center text-xl font-semibold text-[#eb5424] justify-center py-6">
                         <Image
                           src="/logo.svg"
                           alt="logo"
@@ -102,7 +105,7 @@ const Header = () => {
             </Sheet>
           </div>
           <Link href={"/"}>
-            <p className="flex items-center text-lg lg:text-xl text-red-900 font-semibold">
+            <p className="flex items-center text-lg lg:text-xl text-[#eb5424] font-semibold">
               <Image
                 src="/logo.svg"
                 alt="logo"
@@ -160,30 +163,49 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <div className="cursor-pointer">
                   <Avatar>
-                    <AvatarImage src="/avatar.png" alt="image" />
-                    <AvatarFallback>H.S</AvatarFallback>
+                    <AvatarImage
+                      src={data === null ? "/avatar.png" : data?.user?.image}
+                      alt="profile"
+                    />
+                    <AvatarFallback>G.A</AvatarFallback>
                   </Avatar>
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel className="text-center">
+                  My Account
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <LuUser className="mr-2 h-4 w-4" />
-                    <span>ABCD</span>
+                    <span>{data?.user?.name}</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <HiOutlineMail className="mr-2 h-4 w-4" />
-                    <span>ABCD@gmail.com</span>
+                    <span>{data?.user?.email}</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup className="text-center">
-                  <Badge className="text-lg px-5 tracking-wider">Sign</Badge>
+                  {status === "authenticated" ? (
+                    <Badge
+                      className="text-lg px-5 tracking-wider cursor-pointer"
+                      onClick={() => signOut()}
+                    >
+                      SignOut
+                    </Badge>
+                  ) : (
+                    <Badge
+                      className="text-lg bg-green-500 px-5 tracking-wider cursor-pointer"
+                      onClick={() => signIn("google")}
+                    >
+                      SignIn
+                    </Badge>
+                  )}
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>

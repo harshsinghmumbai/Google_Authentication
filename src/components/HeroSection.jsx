@@ -13,16 +13,16 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
 
 const HeroSection = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { status, data } = useSession();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setIsDialogOpen(true);
-    }, 3000);
-    // Cleanup the timeout if the component unmounts
-    return () => clearTimeout(timer);
+    }, 6000);
   }, []);
   return (
     <>
@@ -56,28 +56,53 @@ const HeroSection = () => {
         <AlertDialogTrigger className="hidden">Open</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>To Access WebApp First Signin</AlertDialogTitle>
+            {status === "authenticated" ? (
+              ""
+            ) : (
+              <AlertDialogTitle className="text-center text-xl lg:text-2xl font-bold underline underline-offset-2 decoration-1">
+                It Compulsory to SignIn
+              </AlertDialogTitle>
+            )}
+
             <AlertDialogDescription>
-              <div className="space-y-4">
-                <p className="text-center text-lg font-semibold text-orange-600 tracking-wide">
-                  Sign In Google Authentication WebApp
-                </p>
-                <Button
-                  variant="ghost"
-                  className="border border-gray-600 text-base"
-                >
-                  <Image
-                    src="/google-logo.png"
-                    alt="logo"
-                    width={100}
-                    height={100}
-                    className="w-6 h-6 mr-2"
-                  />
-                  SignIn with Google
-                </Button>
-              </div>
+              {status === "authenticated" ? (
+                <div className="">
+                  <div className="text-lg font-bold md:text-2xl text-center dark:text-white">
+                    {data?.user?.name} You SignIn to Your WebApp Successfully
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="text-center text-lg font-semibold lg:text-xl text-orange-600 tracking-wide">
+                    SignIn To Google Authentication WebApp
+                  </div>
+                  <div className="flex justify-center">
+                    <Button
+                      variant="ghost"
+                      className="border border-gray-600 text-base"
+                      onClick={() => signIn("google")}
+                    >
+                      <Image
+                        src="/google-logo.png"
+                        alt="logo"
+                        width={100}
+                        height={100}
+                        className="w-6 h-6 mr-2"
+                      />
+                      SignIn with Google
+                    </Button>
+                  </div>
+                </div>
+              )}
             </AlertDialogDescription>
           </AlertDialogHeader>
+          {status === "authenticated" ? (
+            <AlertDialogFooter>
+              <AlertDialogCancel>OK</AlertDialogCancel>
+            </AlertDialogFooter>
+          ) : (
+            ""
+          )}
         </AlertDialogContent>
       </AlertDialog>
     </>

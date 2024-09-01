@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
+import { Auth_Provider } from "./Provider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -24,11 +25,13 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <main className="max-w-[1400px] m-auto">
-            <Header />
-            {children}
-            <Footer />
-          </main>
+          <Auth_Provider>
+            <main className="max-w-[1400px] m-auto">
+              <Header />
+              {children}
+              <Footer />
+            </main>
+          </Auth_Provider>
         </ThemeProvider>
       </body>
     </html>
