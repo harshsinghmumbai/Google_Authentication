@@ -31,16 +31,9 @@ import { HiOutlineMail } from "react-icons/hi";
 import { Badge } from "./ui/badge";
 import { Menu } from "lucide-react";
 import { useSession, signOut, signIn } from "next-auth/react";
-import { SendEmail } from "@/lib/resend";
 
 const Header = () => {
   const { data, status } = useSession();
-  if (status === "authenticated") {
-    const Name = data?.user?.name;
-    const Email = data?.user?.email;
-    const Image = data?.user?.image;
-    SendEmail({ Name, Email, Image });
-  }
   return (
     <>
       <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 z-10 border-gray-600 rounded-2xl sticky top-0 backdrop-blur-sm">

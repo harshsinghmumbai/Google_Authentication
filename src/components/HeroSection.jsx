@@ -44,12 +44,10 @@ const HeroSection = () => {
         </Button>
         <div className="p-4 bg-gray-200 rounded-xl z-0">
           <div className="overflow-hidden rounded-lg">
-            <Image
+            <img
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
               alt="image"
               className="w-full h-fit md:h-[400px] lg:h-[470px] object-cover rounded-lg hover:scale-110 cursor-pointer duration-500"
-              width={100}
-              height={100}
             />
           </div>
         </div>
@@ -70,8 +68,8 @@ const HeroSection = () => {
             <AlertDialogDescription>
               {status === "authenticated" ? (
                 <div className="">
-                  <div className="text-lg font-bold md:text-2xl text-center dark:text-white">
-                    {data?.user?.name} You SignIn to Your WebApp Successfully
+                  <div className="text-xl font-bold md:text-2xl text-center dark:text-white">
+                    {data?.user?.name} You SignIn to Your WebApp Successfully 🎉
                   </div>
                 </div>
               ) : (

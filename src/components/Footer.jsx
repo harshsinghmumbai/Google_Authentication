@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const Footer = () => {
   return (
     <>
@@ -8,13 +6,7 @@ const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="#" className="flex items-center">
-                <Image
-                  src="/logo.svg"
-                  className="h-8 me-3"
-                  width={100}
-                  height={100}
-                  alt="FlowBite Logo"
-                />
+                <img src="/logo.svg" className="h-8 me-3" alt="FlowBite Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-[#eb5424]">
                   GAuth
                 </span>

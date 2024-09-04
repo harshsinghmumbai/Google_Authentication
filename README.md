@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GAuth - Google Authentication
 
-## Getting Started
+ <h3> Google Authentication is implemented to trigger upon page rendering. After 6 seconds, it will check if the user is signed in. If not signed in, the user will be prompted to authenticate.  
+ </h3>
 
-First, run the development server:
+# Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ <h3>
+ 🔘 Sigin with Google Auth </br>
+ 🔘 Responsive Design </br>
+ 🔘 Dark Mode Option </br>
+ 🔘 Only Very New User data is store on MongoDB Database </br>
+ 🔘 FAQ (Frequently Asked Questions) Logic </br>
+ 🔘 Create a Model or Alert Logic </br>
+ </h3>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Landing Page
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+![screencapture-localhost-3000-2024-09-04-12_32_55](https://github.com/user-attachments/assets/52e45b43-e1d4-4f5d-8296-f30cea54ec98)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Tech Stack
 
-## Learn More
+🔘React </br>
+🔘Tailwind CSS </br>
+🔘Next.js </br>
+🔘Node.js </br>
+🔘Express </br>
+🔘MongoDB (for database) </br>
 
-To learn more about Next.js, take a look at the following resources:
+# Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are welcome! If you would like to contribute to GAuth, please email to me at harshrsingh552005@gmail.com

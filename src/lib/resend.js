@@ -4,23 +4,23 @@ import { Resend } from "resend";
 const resend = new Resend("re_GJyxrNVo_GVw67MtvgEu17pdxXhcqsEEP");
 
 export const SendEmail = async (value) => {
-  const { Name, Email, Image } = await value;
+  const { name, email, image } = await value;
   await resend.emails.send({
     to: "harshrsingh552005@gmail.com",
     from: "OrcDev <onboarding@resend.dev>",
-    subject: `${Name} has login`,
+    subject: `${name} has login`,
     react: (
       <div>
         <div className="flex justify-center items-center text-center">
           <img
-            src={`${Image}`}
+            src={`${image}`}
             alt="Profile"
             className="w-12 h-12 rounded-full"
           />
         </div>
         <p>
-          {`${Name}`} has successfully signed in to your Google Authentication
-          Web Application using the Email ID: {`${Email}`}
+          {`${name}`} has successfully signed in to your Google Authentication
+          Web Application using the email ID: {`${email}`}
         </p>
         <p>The Harsh team</p>
         <hr />

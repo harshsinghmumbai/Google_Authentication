@@ -2,6 +2,7 @@ import ConnectMongodb from "@/lib/mongodb";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { SendEmail } from "@/lib/resend";
 
 const authOption = {
   providers: [
@@ -14,7 +15,7 @@ const authOption = {
     async signIn({ user, account }) {
       if (account.provider === "google") {
         try {
-          const { name, email } = user;
+          const { name, email, image } = user;
           await ConnectMongodb();
           const userExist = await User.findOne({ email });
           if (!userExist) {
@@ -27,6 +28,7 @@ const authOption = {
             });
 
             if (!res.ok) {
+              SendEmail({ name, email, image });
               return user;
             }
           }
