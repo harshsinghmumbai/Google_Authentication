@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ModeToggle } from "./ModeToggle";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Sheet,
   SheetContent,
@@ -30,10 +29,18 @@ import {
 import { LuUser } from "react-icons/lu";
 import { HiOutlineMail } from "react-icons/hi";
 import { Badge } from "./ui/badge";
+import { Menu } from "lucide-react";
 import { useSession, signOut, signIn } from "next-auth/react";
+import { SendEmail } from "@/lib/resend";
 
 const Header = () => {
   const { data, status } = useSession();
+  if (status === "authenticated") {
+    const Name = data?.user?.name;
+    const Email = data?.user?.email;
+    const Image = data?.user?.image;
+    SendEmail({ Name, Email, Image });
+  }
   return (
     <>
       <header className="p-1 lg:p-2 lg:px-6 sm:px-4 border-b-2 z-10 border-gray-600 rounded-2xl sticky top-0 backdrop-blur-sm">
@@ -41,13 +48,13 @@ const Header = () => {
           <div className="sm:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <GiHamburgerMenu className="text-2xl" />
+                <Menu className="text-2xl" />
               </SheetTrigger>
               <SheetContent side={"left"}>
                 <SheetHeader>
                   <SheetTitle>
                     <Link href={"/"}>
-                      <p className="flex items-center text-xl font-semibold text-[#eb5424] justify-center py-6">
+                      <div className="flex items-center text-xl font-semibold text-[#eb5424] justify-center py-6">
                         <Image
                           src="/logo.svg"
                           alt="logo"
@@ -57,7 +64,7 @@ const Header = () => {
                           priority
                         />
                         GAuth
-                      </p>
+                      </div>
                     </Link>
                   </SheetTitle>
                 </SheetHeader>
@@ -160,17 +167,24 @@ const Header = () => {
           <div className="flex space-x-4 sm:space-x-6">
             <ModeToggle />
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div className="cursor-pointer">
+              <div className="cursor-pointer">
+                <DropdownMenuTrigger asChild>
                   <Avatar>
-                    <AvatarImage
-                      src={data === null ? "/avatar.png" : data?.user?.image}
-                      alt="profile"
+                    <Image
+                      src={
+                        data === null || undefined
+                          ? "/avatar.png"
+                          : data?.user?.image
+                      }
+                      alt="image"
+                      width={100}
+                      height={100}
+                      className="w-10 h-10 rounded-full"
                     />
                     <AvatarFallback>G.A</AvatarFallback>
                   </Avatar>
-                </div>
-              </DropdownMenuTrigger>
+                </DropdownMenuTrigger>
+              </div>
               <DropdownMenuContent>
                 <DropdownMenuLabel className="text-center">
                   My Account
@@ -179,28 +193,34 @@ const Header = () => {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <LuUser className="mr-2 h-4 w-4" />
-                    <span>{data?.user?.name}</span>
+                    <span>
+                      {data === null || undefined ? "abcdef" : data?.user?.name}
+                    </span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <HiOutlineMail className="mr-2 h-4 w-4" />
-                    <span>{data?.user?.email}</span>
+                    <span>
+                      {data === null || undefined
+                        ? "abcdef@gmail.com"
+                        : data?.user?.email}
+                    </span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup className="text-center">
                   {status === "authenticated" ? (
                     <Badge
-                      className="text-lg px-5 tracking-wider cursor-pointer"
+                      className="text-base px-3 tracking-wider cursor-pointer"
                       onClick={() => signOut()}
                     >
                       SignOut
                     </Badge>
                   ) : (
                     <Badge
-                      className="text-lg bg-green-500 px-5 tracking-wider cursor-pointer"
+                      className="text-base bg-green-500 px-3 tracking-wider cursor-pointer"
                       onClick={() => signIn("google")}
                     >
                       SignIn
