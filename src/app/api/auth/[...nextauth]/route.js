@@ -19,7 +19,7 @@ const authOption = {
           await ConnectMongodb();
           const userExist = await User.findOne({ email });
           if (!userExist) {
-            const res = await fetch("http://localhost:3000/api/user_register", {
+            const res = await fetch("api/user_register", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
