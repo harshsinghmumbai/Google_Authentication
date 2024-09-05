@@ -2,7 +2,6 @@ import ConnectMongodb from "@/lib/mongodb";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
-import { SendEmail } from "@/lib/resend";
 
 const authOption = {
   providers: [
@@ -28,7 +27,6 @@ const authOption = {
             });
 
             if (!res.ok) {
-              SendEmail({ name, email, image });
               return user;
             }
           }
