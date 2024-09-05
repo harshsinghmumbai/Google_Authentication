@@ -2,6 +2,7 @@ import ConnectMongodb from "@/lib/mongodb";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import { SendEmail } from "@/lib/resend";
 
 const authOption = {
   providers: [
@@ -18,18 +19,16 @@ const authOption = {
           await ConnectMongodb();
           const userExist = await User.findOne({ email });
           if (!userExist) {
-            const res = await fetch(
-              `${process.env.NEXT_URL}/api/user_register`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name, email }),
-              }
-            );
+            const res = await fetch("http://localhost:3000/api/user_register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, email }),
+            });
 
             if (!res.ok) {
+              SendEmail({ name, email, image });
               return user;
             }
           }
