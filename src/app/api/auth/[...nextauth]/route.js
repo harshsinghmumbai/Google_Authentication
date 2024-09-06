@@ -14,10 +14,11 @@ const authOption = {
     async signIn({ user, account }) {
       if (account.provider === "google") {
         try {
-          const { name, email, image } = user;
+          const { name, email } = user;
           await ConnectMongodb();
           const userExist = await User.findOne({ email });
-          if (!userExist) {
+          console.log(userExist);
+          if (!userExist || null) {
             const res = await fetch("http://localhost:3000/api/user_register", {
               method: "POST",
               headers: {
