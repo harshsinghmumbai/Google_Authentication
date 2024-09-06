@@ -171,15 +171,13 @@ const Header = () => {
               <div className="cursor-pointer">
                 <DropdownMenuTrigger asChild>
                   <Avatar>
-                    <Image
+                    <img
                       src={
                         data === null || undefined
                           ? "/avatar.png"
                           : data?.user?.image
                       }
                       alt="image"
-                      width={100}
-                      height={100}
                       className="w-10 h-10 rounded-full"
                     />
                     <AvatarFallback>G.A</AvatarFallback>

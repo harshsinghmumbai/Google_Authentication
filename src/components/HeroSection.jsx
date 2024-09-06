@@ -56,15 +56,13 @@ const HeroSection = () => {
         <AlertDialogTrigger className="hidden">Open</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              {status === "authenticated" ? (
-                ""
-              ) : (
-                <AlertDialogTitle className="text-center text-xl lg:text-2xl font-bold underline underline-offset-2 decoration-1">
-                  It Compulsory to SignIn
-                </AlertDialogTitle>
-              )}
-            </AlertDialogTitle>
+            {status === "authenticated" ? (
+              <AlertDialogTitle></AlertDialogTitle>
+            ) : (
+              <AlertDialogTitle className="text-center text-xl lg:text-2xl font-bold underline underline-offset-2 decoration-1">
+                It Compulsory to SignIn
+              </AlertDialogTitle>
+            )}
             <AlertDialogDescription>
               {status === "authenticated" ? (
                 <div className="">

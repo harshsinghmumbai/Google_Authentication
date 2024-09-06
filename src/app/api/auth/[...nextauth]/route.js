@@ -19,13 +19,16 @@ const authOption = {
           const userExist = await User.findOne({ email });
           console.log(userExist);
           if (!userExist || null) {
-            const res = await fetch("http://localhost:3000/api/user_register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ name, email }),
-            });
+            const res = await fetch(
+              `${process.env.NEXTAUTH_URL}/api/user_register`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email }),
+              }
+            );
 
             if (!res.ok) {
               return user;
